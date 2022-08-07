@@ -5,6 +5,9 @@ out/
 target/
 *.iml
 
+# Mac
+.DS_Store
+
 # Eclipse
 .classpath
 .project
