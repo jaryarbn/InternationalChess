@@ -1,5 +1,6 @@
 package com.hrbnu.se2104;
 
+import com.hrbnu.se2104.view.ChessBoard;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -23,7 +24,9 @@ public class main extends Application {
         BorderPane borderPane = new BorderPane(button);
         button.setOnAction(
                 event -> {
-                    getHostServices().showDocument("https://www.baidu.com");
+                    ChessBoard chessBoard =new ChessBoard();
+                    chessBoard.chessBoard();
+                    getHostServices().showDocument("ss");
                 }
         );
 

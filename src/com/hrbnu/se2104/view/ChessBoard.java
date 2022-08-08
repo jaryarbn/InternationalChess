@@ -1,92 +1,28 @@
 package com.hrbnu.se2104.view;
 
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
 import java.util.Objects;
 
 public class ChessBoard {
-    static ChessBoard chessBoard = null;
-    private int row;
-    private int column;
-    private double gridLength;
-    private double startX;
-    private double startY;
-    private String currentCamp;
-
-    public ChessBoard(double gridLength, double startX, double startY) {
-        this.row = 8;
-        this.column = 8;
-        this.gridLength = gridLength;
-        this.startX = startX;
-        this.startY = startY;
-        this.currentCamp = "Black";
-    }
-
-
-    public static ChessBoard getChessBoard(double gridLength, double startX, double startY) {
-        if (chessBoard == null) {
-            return new ChessBoard(gridLength, startX, startY);
-        } else {
-            return chessBoard;
+    public void chessBoard() {
+        Stage stage =new Stage();
+        GridPane pane=new GridPane();
+        for (int i=0;i<8;i++){
+            for (int j=0;j<8;j++){
+                Rectangle rectangle=new Rectangle(80,80);
+                rectangle.setFill(Color.BLACK);
+                if ((i+j)%2==0){
+                    pane.add(rectangle,i,j);
+                }
+            }
         }
-    }
-
-
-    public static ChessBoard getChessBoard() {
-        return chessBoard;
-    }
-
-    public static void setChessBoard(ChessBoard chessBoard) {
-        ChessBoard.chessBoard = chessBoard;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getColumn() {
-        return column;
-    }
-
-    public void setColumn(int column) {
-        this.column = column;
-    }
-
-    public double getGridLength() {
-        return gridLength;
-    }
-
-    public void setGridLength(double gridLength) {
-        this.gridLength = gridLength;
-    }
-
-    public double getStartX() {
-        return startX;
-    }
-
-    public void setStartX(double startX) {
-        this.startX = startX;
-    }
-
-    public double getStartY() {
-        return startY;
-    }
-
-    public void setStartY(double startY) {
-        this.startY = startY;
-    }
-
-    public String getCurrentCamp() {
-        return currentCamp;
-    }
-
-    public void setCurrentCamp(String currentCamp) {
-        this.currentCamp = currentCamp;
-    }
-
-    public void changeCamp() {
-        currentCamp = (Objects.equals(currentCamp, "Black") ? "White" : "Black");
+        Scene scene=new Scene(pane);
+        stage.setScene(scene);
+        stage.show();
     }
 }
