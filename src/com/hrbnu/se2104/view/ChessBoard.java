@@ -1,7 +1,5 @@
 package com.hrbnu.se2104.view;
 
-import java.util.Objects;
-
 public class ChessBoard {
     static ChessBoard chessBoard = null;
     private int row;
@@ -9,7 +7,7 @@ public class ChessBoard {
     private double gridLength;
     private double startX;
     private double startY;
-    private String currentCamp;
+    private char currentCamp;
 
     public ChessBoard(double gridLength, double startX, double startY) {
         this.row = 8;
@@ -17,7 +15,7 @@ public class ChessBoard {
         this.gridLength = gridLength;
         this.startX = startX;
         this.startY = startY;
-        this.currentCamp = "Black";
+        this.currentCamp = 'B';
     }
 
 
@@ -78,15 +76,16 @@ public class ChessBoard {
         this.startY = startY;
     }
 
-    public String getCurrentCamp() {
+    public char getCurrentCamp() {
         return currentCamp;
     }
 
-    public void setCurrentCamp(String currentCamp) {
+    public void setCurrentCamp(char currentCamp) {
         this.currentCamp = currentCamp;
     }
 
     public void changeCamp() {
-        currentCamp = (Objects.equals(currentCamp, "Black") ? "White" : "Black");
+        currentCamp = (currentCamp == 'B') ? 'W' : 'B';
     }
+
 }

@@ -26,7 +26,7 @@ public class ChessPane extends Pane {
 
     public ChessPane(ChessBoard chessBoard) {
         this.chessBoard = chessBoard;
-        setChessPiece();
+        setChessPiece();// 先放棋子
         canvas = new Canvas(WIDTH, HEIGHT);
         graphicsContext = canvas.getGraphicsContext2D();
         draw();
@@ -40,7 +40,7 @@ public class ChessPane extends Pane {
 
 
     private void drawBoard() {
-        graphicsContext.clearRect(0, 0, 900, 900);
+        graphicsContext.clearRect(0, 0, WIDTH, HEIGHT);
         double x = chessBoard.getStartX();
         double y = chessBoard.getStartY();
         double grid = chessBoard.getGridLength();
@@ -54,24 +54,23 @@ public class ChessPane extends Pane {
                 flag = !flag;
             }
         }
-
-        graphicsContext.strokeRect(x, y, grid * chessBoard.getColumn(), grid * chessBoard.getRow());
+        graphicsContext.strokeRect(x, y, grid * chessBoard.getColumn(), grid * chessBoard.getRow());// 给矩形外部描边
     }
 
     private void drawPiece() {
         double grid = chessBoard.getGridLength();
-        chessPieces.forEach(e -> {
-            if (e.isSelected()) {
+        chessPieces.forEach(piece -> {
+            if (piece.isSelected()) {
                 graphicsContext.setFill(Color.valueOf("#6495ED"));
-                graphicsContext.fillRect(chessBoard.getStartX() + e.getCol() * grid,
-                        chessBoard.getStartY() + e.getRow() * grid,
+                graphicsContext.fillRect(chessBoard.getStartX() + piece.getColumn() * grid,
+                        chessBoard.getStartY() + piece.getRow() * grid,
                         grid, grid);
             }
 
-            Image image = new Image(e.getType().getUrl());
+            Image image = new Image(piece.getType().getUrl());
             graphicsContext.drawImage(image,
-                    chessBoard.getStartX() + 10 + e.getCol() * grid,
-                    chessBoard.getStartY() + 10 + e.getRow() * grid,
+                    chessBoard.getStartX() + 10 + piece.getColumn() * grid,
+                    chessBoard.getStartY() + 10 + piece.getRow() * grid,
                     grid - 20, grid - 20);
         });
     }
