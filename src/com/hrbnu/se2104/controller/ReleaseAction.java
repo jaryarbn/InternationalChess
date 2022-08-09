@@ -11,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 import java.util.Stack;
 
 public class ReleaseAction implements EventHandler<MouseEvent> {
-    private ChessPane chessPane;
+    private final ChessPane chessPane;
     static Stack<ChessPiece> stack = new Stack<>();
 
     public ReleaseAction(ChessPane chessPane) {
@@ -42,21 +42,25 @@ public class ReleaseAction implements EventHandler<MouseEvent> {
                             printTip(piece.getCamp());
                         }
                         eatPiece(x, y, piece.getCamp());
-                        stack.push((ChessPiece) piece.clone());// 复制一份放进栈里
+                        // 吃掉的子复制一份放进栈里
+                        stack.push((ChessPiece) piece.clone());
 
                         System.out.println(piece.getColumn() + " " + piece.getRow() + " 移动到 " + x + " " + y);
+                        // 重设坐标，移动棋子
                         piece.setColumn(x);
                         piece.setRow(y);
-
-                        chessBoard.changeCamp();// 切换阵营
+                        // 切换阵营
+                        chessBoard.changeCamp();
                     }
-                } else {
+                }// 如果不是当前阵营，给点提示
+                else {
                     if (piece.getCamp() == 'B') {
                         System.out.println("请白色阵营移动棋子");
                     } else {
                         System.out.println("请黑色阵营移动棋子");
                     }
                 }
+                // 移动完之后，棋子还原成未被选中状态，继续
                 piece.setSelected(false);
                 break;
             }
@@ -77,6 +81,7 @@ public class ReleaseAction implements EventHandler<MouseEvent> {
 
     public boolean judgeGameOver(int x, int y) {
         for (ChessPiece piece : chessPane.getChessPieces()) {
+            // 横纵坐标都相同且是黑白国王，游戏结束
             if (piece.getColumn() == x && piece.getRow() == y && (piece.getType() == PieceType.KINGBLACK || (piece.getType() == PieceType.KINGWHITE))) {
                 return true;
             }
