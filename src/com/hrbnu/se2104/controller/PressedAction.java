@@ -22,6 +22,7 @@ public class PressedAction implements EventHandler<MouseEvent> {
         int mouseExistY = (int) ((event.getY() - chessBoard.getStartY()) / (chessBoard.getGridLength()));
 
 
+        // 选中棋子
         chessPane.getChessPieces().forEach(chessPiece -> {
             if (chessPiece.getColumn() == mouseExistX && chessPiece.getRow() == mouseExistY) {
                 chessPiece.setSelected(true);
