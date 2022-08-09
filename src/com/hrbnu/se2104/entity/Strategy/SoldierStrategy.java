@@ -43,13 +43,14 @@ public class SoldierStrategy implements MoveStrategy {
     @Override
     public boolean move(int targetX, int targetY, Set<ChessPiece> chessPieces) {
 
-        // 直线移动
+        // 纵坐标一样时直线移动
         if (currentY == targetY) {
-            if (isOverPiece(targetX, targetY, camp, chessPieces))
-                return false;
             switch (camp) {
                 case 'B': {
                     if (isFirstMove() && (targetX == currentX + 1 || currentX + 2 == targetX)) {
+                        if (isOverPiece(currentX, targetX, chessPieces)) {
+                            return false;
+                        }
                         setFirstMove(false);
                         currentY = targetY;
                         currentX = targetX;
@@ -78,7 +79,7 @@ public class SoldierStrategy implements MoveStrategy {
             }
         }
 
-        //吃子移动
+        //否则斜着走可以吃子
         for (ChessPiece e : chessPieces) {
             if (Math.abs(e.getRow() - currentY) == 1) {
                 if (e.getColumn() - currentX == 1 && e.getCamp() == 'W' ||
@@ -95,9 +96,9 @@ public class SoldierStrategy implements MoveStrategy {
 
     }
 
-    public boolean isOverPiece(int targetX, int targetY, char camp, Set<ChessPiece> chessPieces) {
+    public boolean isOverPiece(int startX, int targetX, Set<ChessPiece> chessPieces) {
         for (ChessPiece piece : chessPieces) {
-            if (piece.getColumn() == targetX && piece.getRow() == targetY && !piece.isSelected()) {
+            if (Math.abs(targetX - piece.getColumn()) == 1 && (targetX - startX) == 2) {
                 return true;
             }
         }

@@ -44,6 +44,7 @@ public class KnightStrategy implements MoveStrategy {
 
     public static boolean isOverPiece(int startX, int startY, int endX, int endY, Set<ChessPiece> chessPieces) {
         for (ChessPiece piece : chessPieces) {
+            // 对角线上的棋子
             if (piece.getColumn() - startX == endX - piece.getColumn() && endY - piece.getRow() == piece.getRow() - startY) {
                 System.out.println(piece.isSelected() + " " + piece.getRow() + " " + piece.getColumn());
                 return true;

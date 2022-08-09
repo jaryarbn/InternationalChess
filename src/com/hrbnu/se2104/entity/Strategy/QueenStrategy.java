@@ -43,6 +43,7 @@ public class QueenStrategy implements MoveStrategy {
 
     private static boolean isOverPiece(int startX, int startY, int endX, int endY, Set<ChessPiece> chessPieces) {
         for (ChessPiece piece : chessPieces)
+            // 如果横纵坐标都不相同，说明无法走直线，用骑士的越子逻辑，否则用车的越子逻辑
             if (piece.getRow() != startY && piece.getColumn() != startX) {
                 return KnightStrategy.isOverPiece(startX, startY, endX, endY, chessPieces);
             } else {
