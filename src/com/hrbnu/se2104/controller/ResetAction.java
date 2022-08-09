@@ -2,12 +2,12 @@ package com.hrbnu.se2104.controller;
 
 import com.hrbnu.se2104.entity.Piece.ChessPiece;
 import com.hrbnu.se2104.view.ChessPane;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 
 import java.util.Stack;
 
-public class ResetAction implements EventHandler<MouseEvent> {
+public class ResetAction implements EventHandler<ActionEvent> {
     private final ChessPane chessPane;
 
     public ResetAction(ChessPane chessPane) {
@@ -15,7 +15,7 @@ public class ResetAction implements EventHandler<MouseEvent> {
     }
 
     @Override
-    public void handle(MouseEvent event) {
+    public void handle(ActionEvent event) {
         Stack<ChessPiece> stack = ReleaseAction.stack;
         if (!stack.empty()) {
             chessPane.getChessPieces().removeIf(piece -> piece.equals(stack.peek())); // 去除原来的棋子
