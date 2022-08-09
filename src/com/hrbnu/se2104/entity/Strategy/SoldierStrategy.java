@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class SoldierStrategy implements MoveStrategy{
     @Override
-    public boolean move(int x, int y, Set<ChessPiece> chessPieces) {
+    public boolean move(int targetX, int targetY, Set<ChessPiece> chessPieces) {
         return false;
     }
 }

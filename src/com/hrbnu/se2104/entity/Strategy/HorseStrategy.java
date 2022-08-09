@@ -32,7 +32,7 @@ public class HorseStrategy implements MoveStrategy {
 
     @Override
     public boolean move(int targetX, int targetY, Set<ChessPiece> chessPieces) {
-        if (XAbsDifferenceValueIsOneAndYAbsDifferenceValueIsTwo(targetX, targetY) || YAbsDifferenceValueIsOneAndXAbsDifferenceValueIsTwo(targetX, targetY)) {
+        if (HorseOnlyMoveRiZiGe(targetX, targetY)) {
             currentX = targetX;
             currentY = targetY;
             return true;
@@ -42,11 +42,7 @@ public class HorseStrategy implements MoveStrategy {
 
     }
 
-    private boolean YAbsDifferenceValueIsOneAndXAbsDifferenceValueIsTwo(int targetX, int targetY) {
-        return (Math.abs(currentY - targetY) == 1) && (Math.abs(currentX - targetX) == 2);
-    }
-
-    private boolean XAbsDifferenceValueIsOneAndYAbsDifferenceValueIsTwo(int targetX, int targetY) {
-        return Math.abs(currentX - targetX) == 1 && Math.abs(currentY - targetY) == 2;
+    private boolean HorseOnlyMoveRiZiGe(int targetX, int targetY) {
+        return (Math.abs(currentY - targetY) == 1) && (Math.abs(currentX - targetX) == 2) || (Math.abs(currentX - targetX) == 1 && Math.abs(currentY - targetY) == 2);
     }
 }
