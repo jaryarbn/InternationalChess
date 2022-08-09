@@ -43,7 +43,7 @@ public class SoldierStrategy implements MoveStrategy {
     @Override
     public boolean move(int targetX, int targetY, Set<ChessPiece> chessPieces) {
 
-        //直线移动
+        // 直线移动
         if (currentY == targetY) {
             if (isOverPiece(targetX, targetY, camp, chessPieces))
                 return false;

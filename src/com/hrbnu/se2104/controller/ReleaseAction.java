@@ -60,7 +60,7 @@ public class ReleaseAction implements EventHandler<MouseEvent> {
 
     public boolean judgeGameOver(int x, int y) {
         for (ChessPiece piece : chessPane.getChessPieces()) {
-            if (piece.getColumn() == x && piece.getRow() == y && (piece.getType() == PieceType.KINGBLACK) || (piece.getType() == PieceType.KINGWHITE)) {
+            if ((piece.getColumn() == x && piece.getRow() == y) && ((piece.getType() == PieceType.KINGBLACK) || (piece.getType() == PieceType.KINGWHITE))) {
                 return true;
             }
         }
