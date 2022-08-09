@@ -81,19 +81,19 @@ public class SoldierStrategy implements MoveStrategy {
         }
 
         //否则斜着走可以吃子
-        for (ChessPiece e : chessPieces) {
-            if (Math.abs(e.getRow() - currentY) == 1) {
-                if (e.getColumn() - currentX == 1 && e.getCamp() == 'W' ||
-                        currentX - e.getColumn() == 1 && e.getCamp() == 'B') {
-                    currentY = targetY;
-                    currentX = targetX;
-                    return true;
+        if (Math.abs(targetX - currentX) == 1) {
+            for (ChessPiece e : chessPieces) {
+                if (Math.abs(e.getRow() - currentY) == 1) {
+                    if (e.getColumn() - currentX == 1 && e.getCamp() == 'W' ||
+                            currentX - e.getColumn() == 1 && e.getCamp() == 'B') {
+                        currentY = targetY;
+                        currentX = targetX;
+                        return true;
+                    }
                 }
             }
         }
-
         return false;
-
     }
 
     public boolean isOverPiece(int startX, int targetX, Set<ChessPiece> chessPieces) {
