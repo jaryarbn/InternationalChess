@@ -65,7 +65,8 @@ public class SoldierStrategy implements MoveStrategy {
 
                 case 'W': {
                     if (isFirstMove() && (targetX == currentX - 1 || targetX == currentX - 2)) {
-                        setFirstMove(false);
+                        if (isOverPiece(currentX, targetX, chessPieces))
+                            setFirstMove(false);
                         currentY = targetY;
                         currentX = targetX;
                         return true;
@@ -88,7 +89,6 @@ public class SoldierStrategy implements MoveStrategy {
                     currentX = targetX;
                     return true;
                 }
-
             }
         }
 
@@ -98,7 +98,7 @@ public class SoldierStrategy implements MoveStrategy {
 
     public boolean isOverPiece(int startX, int targetX, Set<ChessPiece> chessPieces) {
         for (ChessPiece piece : chessPieces) {
-            if (Math.abs(targetX - piece.getColumn()) == 1 && (targetX - startX) == 2) {
+            if (Math.abs(targetX - piece.getColumn()) == 1 && Math.abs(targetX - startX) == 2) {
                 return true;
             }
         }
