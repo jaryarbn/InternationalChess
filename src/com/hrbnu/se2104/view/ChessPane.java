@@ -39,7 +39,7 @@ public class ChessPane extends Pane {
     }
 
 
-    private void drawBoard() {
+    public void drawBoard() {
         graphicsContext.clearRect(0, 0, WIDTH, HEIGHT);
         double x = chessBoard.getStartX();
         double y = chessBoard.getStartY();
@@ -57,7 +57,7 @@ public class ChessPane extends Pane {
         graphicsContext.strokeRect(x, y, grid * chessBoard.getColumn(), grid * chessBoard.getRow());// 给矩形外部描边
     }
 
-    private void drawPiece() {
+    public void drawPiece() {
         double grid = chessBoard.getGridLength();
         chessPieces.forEach(piece -> {
             if (piece.isSelected()) {
@@ -103,4 +103,25 @@ public class ChessPane extends Pane {
             chessPieces.add(new Soldier(PieceType.SOLDIERWHITE, i, 6));
         }
     }
+
+    public Set<ChessPiece> getChessPieces() {
+        return chessPieces;
+    }
+
+    public void setChessPieces(Set<ChessPiece> chessPieces) {
+        this.chessPieces = chessPieces;
+    }
+
+    public ChessBoard getChessBoard() {
+        return chessBoard;
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+    public GraphicsContext getGraphicsContext() {
+        return graphicsContext;
+    }
 }
+

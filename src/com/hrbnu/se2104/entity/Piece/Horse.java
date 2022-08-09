@@ -7,6 +7,6 @@ public class Horse extends ChessPiece{
 
     public Horse(PieceType type, int row, int column) {
         super(type, row, column);
-        setMoveStrategy(new HorseStrategy());
+        setMoveStrategy(new HorseStrategy(getColumn(),getRow()));
     }
 }

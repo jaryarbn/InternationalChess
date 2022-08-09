@@ -7,6 +7,6 @@ public class Knight extends ChessPiece {
 
     public Knight(PieceType type, int row, int column) {
         super(type, row, column);
-        setMoveStrategy(new KnightStrategy());
+        setMoveStrategy(new KnightStrategy(getColumn(),getRow()));
     }
 }

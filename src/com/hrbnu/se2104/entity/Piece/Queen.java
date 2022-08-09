@@ -6,6 +6,6 @@ import com.hrbnu.se2104.entity.Strategy.QueenStrategy;
 public class Queen extends ChessPiece{
     public Queen(PieceType type, int row, int column) {
         super(type, row, column);
-        setMoveStrategy(new QueenStrategy());
+        setMoveStrategy(new QueenStrategy(getColumn(),getRow()));
     }
 }

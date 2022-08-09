@@ -7,6 +7,6 @@ public class Car extends ChessPiece{
 
     public Car(PieceType type, int row, int column) {
         super(type, row, column);
-        setMoveStrategy(new CarStrategy());
+        setMoveStrategy(new CarStrategy(getColumn(),getRow()));
     }
 }

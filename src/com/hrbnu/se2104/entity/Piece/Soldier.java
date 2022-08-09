@@ -6,6 +6,6 @@ import com.hrbnu.se2104.entity.Strategy.SoldierStrategy;
 public class Soldier extends ChessPiece{
     public Soldier(PieceType type, int row, int column) {
         super(type, row, column);
-        setMoveStrategy(new SoldierStrategy());
+        setMoveStrategy(new SoldierStrategy(getColumn(),getRow(),getCamp()));
     }
 }
