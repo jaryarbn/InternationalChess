@@ -52,13 +52,9 @@ public class SoldierStrategy implements MoveStrategy {
                             return false;
                         }
                         setFirstMove(false);
-                        currentY = targetY;
-                        currentX = targetX;
-                        return true;
+                        return moveToTarget(targetX, targetY);
                     } else if (!isFirstMove() && currentX + 1 == targetX) {
-                        currentY = targetY;
-                        currentX = targetX;
-                        return true;
+                        return moveToTarget(targetX, targetY);
                     }
                     break;
                 }
@@ -67,33 +63,33 @@ public class SoldierStrategy implements MoveStrategy {
                     if (isFirstMove() && (targetX == currentX - 1 || targetX == currentX - 2)) {
                         if (isOverPiece(currentX, targetX, chessPieces))
                             setFirstMove(false);
-                        currentY = targetY;
-                        currentX = targetX;
-                        return true;
+                        return moveToTarget(targetX, targetY);
                     } else if (!isFirstMove() && currentX - 1 == targetX) {
-                        currentY = targetY;
-                        currentX = targetX;
-                        return true;
+                        return moveToTarget(targetX, targetY);
                     }
                     break;
                 }
             }
         }
 
-        //否则斜着走可以吃子
+        //否则斜着走吃子,只能走一格
         if (Math.abs(targetX - currentX) == 1) {
             for (ChessPiece e : chessPieces) {
                 if (Math.abs(e.getRow() - currentY) == 1) {
                     if (e.getColumn() - currentX == 1 && e.getCamp() == 'W' ||
                             currentX - e.getColumn() == 1 && e.getCamp() == 'B') {
-                        currentY = targetY;
-                        currentX = targetX;
-                        return true;
+                        return moveToTarget(targetX, targetY);
                     }
                 }
             }
         }
         return false;
+    }
+
+    private boolean moveToTarget(int targetX, int targetY) {
+        currentY = targetY;
+        currentX = targetX;
+        return true;
     }
 
     public boolean isOverPiece(int startX, int targetX, Set<ChessPiece> chessPieces) {
